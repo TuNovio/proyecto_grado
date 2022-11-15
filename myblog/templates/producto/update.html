@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% block title1 %} Update1 {% endblock %} {% block
+header %}
+<div
+  style="
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: static;
+  "
+>
+  {% block title %} Update {% endblock %}
+
+  <!-- <a href="{{ url_for('productos.delete', id=producto.codprod) }}" >Eliminar</a>   -->
+
+  <a
+  href="{{ url_for('productos.delete', id=producto.codprod) }}"
+  onclick="return confirm('Are you sure?')"
+  type="button"
+  style="text-decoration: none;
+    min-width: 70%;     
+    background-color: #224a64; 
+    color: #fff;
+    text-align: center; 
+    padding: 5px 0;
+    border-radius: 6px; 
+    cursor: pointer; 
+    right: 0px;
+    margin-right: 20px;
+    ">
+    Eliminar
+  </a>
+
+
+</div>
+
+{% endblock %} {% block content %}
+
+<!-- TODO VALIDACION CODPROD -->
+
+<form method="post">
+  <div 
+    style="display:grid ;
+    grid-template-columns: 15% 80%;
+    align-items: center ;
+    ">
+
+    <label class="class_label" for="codprod">codprod</label>
+    <input type="number" name="codprod" id="codprod" value="{{ producto.codprod }}" required />
+
+    <label class="class_label" for="codbar">codbar</label>
+    <input type="number" name="codbar" id="codbar" value="{{ producto.codbar }}" required />
+
+    <label class="class_label" for="nomprod">Nombre Producto</label>
+    <input type="text" name="nomprod" id="nomprod" value="{{ producto.nomprod }}" required />
+
+    <label class="class_label" for="exiprod">Existencia</label>
+    <input type="number" name="exiprod" id="exiprod" value="{{ producto.exiprod }}" required />
+
+    <label class="class_label" for="venprod">Precio</label>
+    <input type="number" name="venprod" id="venprod" value="{{ producto.venprod }}" required />
+
+    <label class="class_label" for="cosprod">cosulc</label>
+    <input type="number" name="cosprod" id="cosprod" value="{{ producto.cosulc }}" required  readonly/>
+    <label class="class_label" for="undfra">undfra</label>
+    <input type="number" name="undfra" id="undfra" value="{{ producto.undfra }}" required />
+    <label class="class_label" for="pvenfra">pvenfra</label>
+    <input type="number" name="pvenfra" id="pvenfra" value="{{ producto.pvenfra }}" required />
+
+  </div>
+
+  <button style="padding: 10px;
+            background-color: #224a64;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            "
+          type="submit"name="submit_button">Actualizar</button>
+
+  <!-- <input type="submit" name="submit_button" value="Actualizar" /> -->
+</form>
+  <style>
+    label,
+    .class_label {
+      color: #fff;
+      font-size: 10px;   
+      align-items: center;   
+      justify-content: center;
+      
+  }
+  input{ 
+      max-height: 20px;
+      font-size: 10px;
+  }
+</style>
+
+{% endblock %}
+
+<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/confirm.js') }}"></script> -->

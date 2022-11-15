@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+<h2>{% block title1 %} Registrar producto {% endblock %}</h2>
+{% block header %}
+<h2>{% block title %} Registrar producto {% endblock %}</h2>
+
+{% endblock %} {% block content %}
+
+
+<form method="POST" >
+  <div style="display:grid ; grid-template-columns: 15% 80%; align-items: center ;">
+  
+    <label class="class_label" for="codprod">codprod</label>
+    <input 
+      style="
+        background-color: #72727271;
+        color: #bdbdbd;" 
+      type="number" 
+      name="codprod" 
+      id="codprod" 
+      value="{{ last_producto }}" 
+    />
+  
+    <label class="class_label" for="codbar">codbar</label>
+    <input type="number" name="codbar" id="codbar" value="{{ last_producto }}" />
+  
+    <label class="class_label" for="nomprod">nomprod</label>
+    <input type="text" name="nomprod" id="nomprod" />
+  
+    <label class="class_label" for="venprod">venprod</label>
+    <input type="number" name="venprod" id="venprod" />
+  
+    <label class="class_label" for="exiprod">exiprod</label>
+    <input type="number" name="exiprod" id="exiprod" value="0" />
+  
+    <label class="class_label" for="cosulc">cosulc</label>
+    <input type="number" name="cosulc" id="cosulc" value="0" readonly style="  background-color: #72727271;
+    color: #bdbdbd;" />
+  
+    <label class="class_label" for="undfra">undfra</label>
+    <input type="number" name="undfra" id="undfra" value="1" />
+  
+    <label class="class_label" for="pvenfra">pvenfra</label>
+    <input type="number" name="pvenfra" id="pvenfra" value="0" />
+  </div>
+
+  <input
+    type="submit" 
+    style="
+      background-color: #377ba8; 
+      color: #fff;
+      min-width:100% ;
+      max-height: 50px;" 
+    value="Registrar" 
+  />
+</form>
+
+<style>
+  label,
+  .class_label{
+      color: #fff;
+      font-size: 10px;           
+  }
+  input{        
+      max-height: 20px;
+      font-size: 10px;
+  }
+</style>
+
+{% endblock %}
+
+
+
+<!-- 
+codprod, codbar, nomprod, exiprod, tipcos, cosprod, cosaut, cosulc, venprod, pvenfra
+-->
+
+<!-- #TODO -->
+<!-- BOTON RESET -->

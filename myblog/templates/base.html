@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/blog.ico') }}"
+      type="image/x-icon"
+    />
+    <!-- my blog valor defalul -->
+    <title>{% block title %} Title {% endblock %}- CRUD</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "bc40f63065094f1ba94534e9216521fd"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="nav">
+        <div>
+          <a style="max-height: 50px" href="{{ url_for('productos.index') }}">
+            <h1>{% block title1 %}{% endblock %}</h1>
+          </a>
+        </div>
+
+        <nav>
+          {% if g.user %}
+          <img
+            src="{{ url_for('static', filename='img/user.png') }}"
+            alt="user"
+            style="max-height: 20px; max-width: 20px"
+          />
+          <span>{{ g.user.username }}</span>
+          <a href="{{ url_for('auth.logout') }}">Cerrar sesion</a>
+          <a href="{{ url_for('auth.register') }}">Registra usuario</a>
+          {% else %}
+          <a href="{{ url_for('auth.login') }}">Iniciar sesion</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <section>
+      <div class="content">
+        <header>
+          <div style="flex: auto; column-count: 1">
+            {% if g.user %}
+
+            <div
+              style="
+                justify-items: auto;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                position: relative;
+                margin-bottom: 10px;
+              "
+            >
+              <a
+                href="{{ url_for('productos.index') }}"
+                style="
+                  background-color: #224a64;
+                  text-align: right;
+                  color: #fff;
+                  border-style: hidden;
+                  font-size: 10px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                  padding: 5px;
+                  width: 90px;
+                  text-align: center;
+                  margin-right: 20px;
+                  text-decoration: none;
+                "
+                type="button"
+                value="Productos"
+                >Productos
+              </a>
+
+              <a
+                href="{{ url_for('compras.index') }}"
+                style="
+                  background-color: #224a64;
+                  text-align: right;
+                  color: #fff;
+                  border-style: hidden;
+                  font-size: 10px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                  padding: 5px;
+                  text-align: center;
+                  width: 90px;
+                  text-decoration: none;
+                "
+                type="button"
+                value="Compras"
+                >Compras
+              </a>
+            </div>            
+            <div>
+              {% block header %}              
+              {% endblock %}
+            </div>
+            {% endif %}
+            <div>
+              {% block search %}
+              {% endblock %}
+            </div>
+
+          </div>
+        </header>
+
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        <div style="display: grid; align-items: center; text-align: center;">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
