@@ -5,10 +5,10 @@ class Config:
 
     #CONFIGURACION BASE DATOS 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:5x5W12@localhost:3306/flask"
+    SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:5x5W12@localhost:3306/ronald"
 
 class ProductionsConfig(Config):
-    DEBUG= False
+    DEBUG= True
 
 class DevelopmentConfig(Config):
     SECRET_KEY='dev'

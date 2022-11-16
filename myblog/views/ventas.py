@@ -41,7 +41,6 @@ def printAnalitycs(mes):
 
 
 @ventas.route('/', methods=('GET', 'POST'))
-@login_required
 def analitycs():
     printAnalitycs(5)
     return render_template('analitycs/ventas.html')

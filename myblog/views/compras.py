@@ -280,7 +280,6 @@ def delete( id_compra, id_producto):
     return redirect(url_for('compras.registerProductos',id=id_compra))
 
 @compras.route('/anular/<id_compra>', methods=('GET', 'POST'))
-@login_required
 def anular( id_compra ):
     detCompra = DetCompra.query.filter(DetCompra.numcom ==id_compra).all() 
     print("*"*50,"\n", detCompra, "\n", "*"*50)

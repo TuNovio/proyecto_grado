@@ -19,7 +19,6 @@ def login_required(view):
 
 #Crear o Registara Usuario
 @auth.route('/register', methods=('GET', 'POST'))
-@login_required
 def register():
     if request.method =='POST':
         username = request.form.get('username')

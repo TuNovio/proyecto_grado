@@ -3,7 +3,6 @@ from flask import (
 )
 from myblog import db
 from myblog.models.producto import Producto
-from myblog.views.auth import login_required
 from werkzeug.exceptions import abort
 import pyperclip
 
@@ -100,7 +99,6 @@ def g_producto():
 
 
 @productos.route('/register', methods=('GET', 'POST'))
-@login_required
 def register():
     last_producto = Producto.query.order_by(Producto.codprod.desc()).first()
     if request.method == 'POST':
@@ -164,7 +162,6 @@ def get_producto(id):
 
 
 @productos.route('/producto/delete/<int:id>', methods=('GET', 'POST'))
-@login_required
 def delete(id):
     producto = get_producto(id)
     db.session.delete(producto)
@@ -175,7 +172,6 @@ def delete(id):
 
 
 @productos.route('/producto/update/<int:id>', methods=('GET', 'POST'))
-@login_required
 def update(id):
     producto = get_producto(id)
     error = None
