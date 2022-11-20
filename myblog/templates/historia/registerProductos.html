@@ -1,0 +1,315 @@
+{% extends 'base.html' %} {% block title %} Compras {% endblock %} {% block
+title1 %} Compras {% endblock %} {% block header %} {% endblock %} {% block
+content %}
+<hr style="margin-bottom: 10px" />
+<div style="display: grid; grid-template-columns: 20% 80%; align-items: center">
+  <h2>Agregar Productos</h2>
+  <form method="post">
+    <input style=" margin: 5px; background-color: #224a64; border-style: hidden;
+    color: #fff; max-height: 25px; border-radius: 6px; " type="text"
+    name="txtcategoria" id="txtcategoria" autofocus {% if session["g_producto"]
+    %} placeholder="{{ session['g_producto'] }} : {{ productos|length }}
+    resultados" {% elif g.html_g_producto %} placeholder="{{ g.html_g_producto
+    }}" {% else %} placeholder="Buscador..." {% endif %} />
+    <input type="submit" value="send" hidden />
+  </form>
+</div>
+<hr style="margin: 10px 0" />
+<button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+
+{% for producto in productos %}
+<article
+  style="
+    background-color: #173346;
+    padding: 0 9px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    text-align: center;
+  "
+>
+  <header style="flex: auto">
+    <a
+      style="
+        display: grid;
+        grid-template-columns: 10% 70% 10% 10%;
+        background-color: #173346;
+        padding: 0 9px;
+        margin-bottom: 6px;
+        border-radius: 3px;
+        text-align: center;
+        align-items: center;
+        min-height: 30px;
+      "
+    >
+      {{ producto.codprod }}
+    </a>
+
+    <a
+      href="{{ url_for('compras.agregarProducto', id_producto=producto.codprod, id_compra=id_compra) }}"
+      style="
+        text-decoration: none;
+        background-color: #224a64;
+        color: #fff;
+        border-radius: 3px;
+        max-width: 500px;
+        width: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 5px;
+        text-align: center;
+        font-size: 14px;
+      "
+      type="button"
+    >
+      {{ producto.nomprod }}
+    </a>
+
+    <p style="text-align: right; min-width: 34px">
+      {{ "Venta: {:,.0f}".format(producto.venprod)}}
+    </p>
+  </header>
+
+  <div style="display: grid; place-items: center; margin-top: -5px">
+    <div style="column-count: 3; margin-bottom: 5px">
+      <p style="font-size: 10px">
+        {{ "Costo: {:,.0f}".format(producto.cosulc)}}
+      </p>
+      <p>Existencia: {{ producto.exiprod }}</p>
+      {% if producto.undfra > 1 %}
+      <p style="font-size: 10px">
+        {{ "Unidad: {:,.0f}".format(producto.pvenfra) }}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</article>
+{% endfor %}
+<hr style="margin-bottom: 10px" />
+<div style="display: grid; grid-template-columns: 20% 80%; align-items: center">
+  <h2>Lista Productos</h2>
+
+  <a
+    href="{{ url_for('compras.anular',  id_compra=id_compra ) }}"
+    onclick="return confirm('Are you sure?')"
+    style="
+      text-decoration: none;
+      background-color: #224a64;
+      color: #fff;
+      border-radius: 3px;
+      max-width: 100%;
+      margin-left: 5px;
+      padding: 5px;
+      text-align: center;
+      font-size: 14px;
+    "
+    type="button"
+  >
+    ANULAR COMPRA
+  </a>
+</div>
+<hr style="margin: 10px 0" />
+
+<header
+  style="
+    display: grid;
+    grid-template-columns: 10% 70% 10% 10%;
+    background-color: #173346;
+    padding: 0 9px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    text-align: center;
+    align-items: center;
+    min-height: 30px;
+  "
+>
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+    "
+    >Codigo</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+    "
+    >Producto</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+      margin-right: 10px;
+    "
+    >Costo</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+    "
+    >Cantidad</a
+  >
+</header>
+
+{% for producto_compra in productos_Compra %}
+<article
+  style="
+    display: grid;
+    grid-template-columns: 10% 70% 10% 10%;
+    background-color: #173346;
+    padding: 0 9px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    text-align: center;
+    align-items: center;
+    min-height: 30px;
+  "
+>
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+    "
+  >
+    {{ producto_compra.codprod }}
+  </a>
+  <a
+    href="{{ url_for('compras.delete', id_producto=producto_compra.codprod, id_compra=id_compra ) }}"
+    onclick="return confirm('Are you sure?')"
+    style="
+      text-decoration: none;
+      background-color: #224a64;
+      color: #fff;
+      border-radius: 3px;
+      max-width: 90%;
+      margin-left: 5px;
+      padding: 5px;
+      text-align: center;
+      font-size: 14px;
+    "
+    type="button"
+  >
+    {{ producto_compra.nomdet }}
+  </a>
+  <p style="margin-left: -5px">{{ producto_compra.cosuni }}</p>
+  <p>{{ producto_compra.candet }}</p>
+</article>
+{% endfor %}
+
+<hr style="margin-bottom: 10px" />
+<header
+  style="
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color: #173346;
+    padding: 0 9px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    text-align: center;
+    align-items: center;
+    min-height: 30px;
+  "
+>
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+    "
+    >Sub Total</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+    "
+    >IVA</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+      margin-right: 10px;
+    "
+    >Total</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+    "
+    >{{ "{:,.0f}".format(compra.subcom) }}</a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+    "
+    >{{ "{:,.0f}".format(compra.totiva) }} </a
+  >
+  <a
+    style="
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      min-width: 30px;
+      margin-right: 10px;
+    "
+    >{{ "{:,.0f}".format(compra.totcom) }}</a
+  >
+</header>
+<hr style="margin: 10px 0" />
+
+<script>
+  let mybutton = document.getElementById("myBtn");
+
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+{% endblock %}

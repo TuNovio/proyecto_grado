@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block title1 %} Update1 {% endblock %} {% block
+header %}
+<div style="
+    width: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: static;
+  ">
+  {% block title %} Update {% endblock %}
+
+  <a href="{{ url_for('pacientes.delete', cedula=paciente.cedula) }}" onclick="return confirm('Are you sure?')" type="button" style="text-decoration: none;
+    min-width: 70%;     
+    background-color: #224a64; 
+    color: #fff;
+    text-align: center; 
+    padding: 5px 0;
+    border-radius: 6px; 
+    cursor: pointer; 
+    right: 0px;
+    margin-right: 20px;
+    ">
+    Eliminar
+  </a>
+
+
+</div>
+
+{% endblock %} {% block content %}
+
+<!-- TODO VALIDACION CODPROD -->
+
+<form method="post">
+  <div style="display:grid ;
+    grid-template-columns: 15% 80%;
+    align-items: center ;
+    ">
+
+    <label class="class_label" for="tipo_documento">tipo_documento</label>
+    <input type="text" name="tipo_documento" id="tipo_documento" value="{{ paciente.tipo_documento }}" required />
+
+    <label class="class_label" for="cedula">cedula</label>
+    <input type="number" name="cedula" id="cedula" value="{{ paciente.cedula }}" required />
+
+
+    <label class="class_label" for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" value="{{ paciente.nombre }}" required />
+
+    <label class="class_label" for="edad">Edad</label>
+    <input type="number" name="edad" id="edad" value="{{ paciente.edad }}" required />
+
+    <label class="class_label" for="genero">genero</label>
+    <input type="text" name="genero" id="genero" value="{{ paciente.genero }}" required />
+
+    <label class="class_label" for="tipo_subsidio">tipo_subsidio</label>
+    <input type="text" name="tipo_subsidio" id="tipo_subsidio" value="{{ paciente.tipo_subsidio }}" required />
+
+    <label class="class_label" for="fecha_nacimiento">fecha_nacimiento</label>
+    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ paciente.fecha_nacimiento }}">
+  </div>
+
+  <button style="padding: 10px;
+            background-color: #224a64;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            " type="submit" name="submit_button">Actualizar</button>
+
+  <!-- <input type="submit" name="submit_button" value="Actualizar" /> -->
+</form>
+<style>
+  label,
+  .class_label {
+    color: #fff;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  input {
+    max-height: 20px;
+    font-size: 10px;
+  }
+</style>
+
+<script>
+  const fecha_nacimiento = document.getElementById('fecha_nacimiento')
+  let start = Date(fecha_nacimiento.value)
+  let miFecha = new Date(start)
+  let mes = miFecha.getMonth()
+  let dia = miFecha.getDate()
+  let miAño = miFecha.getFullYear()
+  fecha_nacimiento.value = `${miAño}-${(mes)}-${(dia < 10 ? '0' : '').concat(dia)}`
+</script>
+{% endblock %}
+
+<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/confirm.js') }}"></script> -->

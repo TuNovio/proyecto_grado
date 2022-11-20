@@ -38,3 +38,6 @@ app.register_blueprint(compras)
 from myblog.views.ventas import ventas
 app.register_blueprint(ventas)
 
+from myblog.views.paciente  import pacientes
+app.register_blueprint(pacientes)
+

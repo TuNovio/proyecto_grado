@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+<h2>{% block title1 %} Registrar paciente {% endblock %}</h2>
+{% block header %}
+<h2>{% block title %} Registrar paciente {% endblock %}</h2>
+
+{% endblock %} {% block content %}
+
+<form method="POST" >
+  <div style="display:grid ; grid-template-columns: 15% 80%; align-items: center ;">
+
+    <label class="class_label" for="tipo_documento">tipo_documento</label>
+    <select name="tipo_documento" id="seleccion_documento"> 
+      <option selected> Selecciona el tipo de documento</option>
+      <option value="C.C">C.C</option>
+      <option value="T.I">T.I</option>
+      <option value="otro">otro</option>
+    </select>
+  
+    <label class="class_label" for="cedula">cedula</label>
+    <input 
+      type="number"
+      style="
+        background-color: #72727271;
+        color: #bdbdbd;" 
+      name="cedula" 
+      id="cedula" 
+    />
+  
+  
+    <label class="class_label" for="nombre">nombre</label>
+    <input type="text" name="nombre" id="nombre" />
+  
+    <label class="class_label" for="edad">edad</label>
+    <input type="number" name="edad" id="edad" />
+  
+    <label class="class_label" for="genero">genero</label>
+    <select name="genero" id="lista_genero">
+      <option selected>Seleccione el genero</option>
+      <option value="H">Masculino</option>
+      <option value="F">Femenino</option>
+      <option value="Otro">Otro</option>
+    </select>
+  
+    <label class="class_label" for="tipo_subsidio">tipo_subsidio</label>
+    <select name="tipo_subsidio" id="lista_subsidio">
+      <option selected>Selcciona el tipo de subsidio</option>
+      <option value="subsidiado">subsidiado</option>
+      <option value="contributivo">contributivo</option>
+      <option value="otro">otro</option>
+    </select>
+  
+    <label class="class_label" foe="fecha_nacimiento">fecha_nacimiento</label>
+    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+  
+
+  </div>
+
+  <input
+    type="submit" 
+    style="
+      background-color: #377ba8; 
+      color: #fff;
+      min-width:100% ;
+      max-height: 50px;" 
+    value="Registrar" 
+  />
+</form>
+
+<style>
+  label,
+  .class_label{
+      color: #fff;
+      font-size: 10px;           
+  }
+  input{        
+      max-height: 20px;
+      font-size: 10px;
+  }
+</style>
+
+{% endblock %}
+
+
+
+<!-- 
+codprod, codbar, nomprod, exiprod, tipcos, cosprod, cosaut, cosulc, venprod, pvenfra
+-->
+
+<!-- #TODO -->
+<!-- BOTON RESET -->

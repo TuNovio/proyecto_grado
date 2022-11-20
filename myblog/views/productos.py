@@ -7,7 +7,7 @@ from werkzeug.exceptions import abort
 import pyperclip
 
 
-productos = Blueprint('productos', __name__)
+productos = Blueprint('productos', __name__ ,url_prefix='/productos')
 # productos =Blueprint('productos', __name__, url_prefix='/productos')
 # add string to the end on loop
 
