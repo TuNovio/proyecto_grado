@@ -32,7 +32,6 @@ def update_compra(id_compra):
         compra.totcom = compra.totcom + (detCompra.valuni*detCompra.candet) + (detCompra.ivapes*detCompra.candet)#1000 or 1100
         db.session.add(compra)
     db.session.commit()
-
 @compras.route("/", methods=('GET', 'POST'))
 @login_required
 def index():
